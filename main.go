@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func main(){
-	fmt.Println("duelle starting yooo")
+func main() {
+	fmt.Println("duelle starting")
 }
