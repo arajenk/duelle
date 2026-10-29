@@ -12,15 +12,22 @@ import (
 var words = []string{"crane", "apple", "eagle", "plant", "ghost", "brick", "flame", "sword", "crown", "storm"}
 
 func main() {
-	// pick a random answer from the word_list
+	
 	n := rand.IntN(len(words))
 	answer := words[n]
 	scanner := bufio.NewScanner(os.Stdin)
-	// take a guess from the terminal
+	
 	count := 0
 	for count < 6 {
 		fmt.Print("Enter your guess: ")
-		scanner.Scan()
+		if !scanner.Scan() {
+			if err := scanner.Err(); err != nil {
+				fmt.Fprintln(os.Stderr, "error reading input:", err)
+				os.Exit(1)
+			}
+			fmt.Printf("\nNo more input. The word was: %s\n", answer)
+			return
+		}
 		guess := scanner.Text()
 		guess = strings.ToLower(guess)
 		guess = strings.TrimSpace(guess)
