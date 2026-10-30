@@ -2,6 +2,8 @@
 
 word game where you trap your friends. you pick the word your opponent has to solve, they pick yours, fewest guesses wins.
 
+skill wins over time, but anyone can steal a round with a good trap. every feature should protect this.
+
 ## core
 
 - 5 letters, 6 guesses
@@ -13,11 +15,12 @@ word game where you trap your friends. you pick the word your opponent has to so
 - each round you get 3 random words and pick one for your opponent
 - 15s to pick, auto picks if you're afk
 - 3+ players: shuffle into a circle each round, you trap the person after you
+- 3+ players: show "trapped by <name>" during the round
 - reveal at the end of the round ("arajen trapped you with BATCH")
 
 ## theme
 
-- medieval duel vibe - crimson, bronze-gold, stone 
+- medieval duel vibe - crimson, bronze-gold, stone
 
 ## rooms
 
@@ -68,20 +71,31 @@ word game where you trap your friends. you pick the word your opponent has to so
 - react + vite + tailwind frontend
 - move to torpor when possible, figure out backend hosting when that bridge needs to be crossed
 - modes as an interface so adding new ones doesn't mean rewriting stuff
+- backend uses correct / present / absent, frontend decides colors
+- PROTOCOL.md = client/server messages + room phases
+- frontend/DESIGN.md = actual ui (skribbl-style sidebar on desktop, compact strip on phone)
 
 ## keep it original
 
 - own name, own colors, own layout, own word list
 - word list built from ENABLE + frequency data, cleaned by hand. not generated
+- real words people know, but trappy ones (clusters like _ATCH, double letters, weird combos like JAZZY/KNACK)
+- no super obscure stuff (if it doesn't feel english it's out), tune the frequency cutoff by playtesting
+- later: solver ranks words by how hard they are to solve
+
+## money
+
+- free, no ads. cosmetics/supporter tier only if real players show up
 
 ## v0
 
-- [ ] score + validate + word lists
+- [x] score + validate
+- [ ] word lists
 - [ ] 1v1 only, room code
 - [ ] trap words
 - [ ] best of 5, fewest guesses wins
 - [ ] nickname only, no accounts
-- [ ] ugly frontend is fine
+- [ ] frontend in react from day one, only v0 screens, no polish
 
 ## v1
 
@@ -107,6 +121,9 @@ word game where you trap your friends. you pick the word your opponent has to so
 - modifiers (host toggles): random opener (same opener for everyone when compared, random in solo)
 - daily rework: community trap — after the daily you pick tomorrow's word from 3, most picked wins
 - if nobody votes, duellebot sets it. hide vote count until it's big
+- progression: xp, medieval titles (peasant → squire → knight → lord → king), cosmetic unlocks only, nothing pay to win
+- share cards after matches ("arajen trapped me with BATCH 💀")
+- discord activity
 - match history, achievements, suggestion box
 
 ## maybe
@@ -122,3 +139,5 @@ word game where you trap your friends. you pick the word your opponent has to so
 - blind mode
 - hard mode
 - plain daily
+- draft mode
+- mirror mode (that's just head-to-head wordle)
