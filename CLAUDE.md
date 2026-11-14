@@ -1,4 +1,4 @@
-# <project name>
+# duelle
 
 ## context
 - Read SPEC.md (repo root) before planning anything. It's the source of truth.
