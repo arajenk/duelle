@@ -12,11 +12,11 @@ import (
 var words = []string{"crane", "apple", "eagle", "plant", "ghost", "brick", "flame", "sword", "crown", "storm"}
 
 func main() {
-	
+
 	n := rand.IntN(len(words))
 	answer := words[n]
 	scanner := bufio.NewScanner(os.Stdin)
-	
+
 	count := 0
 	for count < 6 {
 		fmt.Print("Enter your guess: ")
@@ -38,18 +38,17 @@ func main() {
 		count++
 		if guess == answer {
 			fmt.Println("Correct.")
-			fmt.Println(Score(guess,answer))
+			fmt.Println(Score(guess, answer))
 			break
 		} else {
 			fmt.Printf("Wrong! %d out of 6 attempts!\n", count)
-			fmt.Println(Score(guess,answer))
+			fmt.Println(Score(guess, answer))
 			if count == 6 {
 				fmt.Println("Out of guesses!")
 				fmt.Printf("The word was: %s\n", answer)
 			}
 		}
 	}
-
 
 }
 func isValid(word string) bool {

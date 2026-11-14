@@ -2,24 +2,30 @@ package main
 
 import "bytes"
 
-func Score(guess, answer string) [5]string {
-	var result [5]string
+type Result int
+
+const (
+	Absent Result = iota
+	Present
+	Correct
+)
+
+func Score(guess, answer string) [5]Result {
+	var result [5]Result
 	answerSlice := []byte(answer)
 	for i := range 5 {
 		if guess[i] == answer[i] {
-			result[i] = "correct"
+			result[i] = Correct
 			answerSlice[i] = '_'
-		} else {
-			result[i] = "absent"
-		}
+		} 
 	}
 	for i := range 5 {
-		if result[i] == "correct" {
+		if result[i] == Correct {
 			continue
 		}
 		j := bytes.IndexByte(answerSlice, guess[i])
 		if j != -1 {
-			result[i] = "present"
+			result[i] = Present
 			answerSlice[j] = '_'
 		}
 	}
