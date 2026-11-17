@@ -1,6 +1,9 @@
 package main
 
-import "bytes"
+import (
+	"bytes"
+	"errors"
+)
 
 type Result int
 
@@ -9,8 +12,16 @@ const (
 	Present
 	Correct
 )
+var ErrGuessLength = errors.New("guess must be 5 characters")
+var ErrAnswerLength = errors.New("answer must be 5 characters")
 
-func Score(guess, answer string) [5]Result {
+func Score(guess, answer string) ([5]Result, error) {
+	if len(guess) != 5 {
+		return [5]Result{}, ErrGuessLength
+	}
+	if len(answer) != 5 {
+		return [5]Result{}, ErrAnswerLength
+	}
 	var result [5]Result
 	answerSlice := []byte(answer)
 	for i := range 5 {
@@ -29,6 +40,6 @@ func Score(guess, answer string) [5]Result {
 			answerSlice[j] = '_'
 		}
 	}
-	return result
+	return result, nil
 
 }
